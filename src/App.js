@@ -24,6 +24,12 @@ class App extends Component {
     if (prevState.searchQuery !== this.state.searchQuery) {
       this.fetchImages();
     }
+    if (images.length > 12) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   }
 
   onChangeQuery = (query) => {
@@ -51,10 +57,6 @@ class App extends Component {
       })
       .catch((error) => this.setState({ error }))
       .finally(() => this.setState({ isLoading: false }));
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "smooth",
-    });
   };
 
   toggleModal = () => {
@@ -63,8 +65,8 @@ class App extends Component {
     }));
   };
 
-  onOpenModal = (e) => {
-    this.setState({ largeImageURL: e.target.dataset.source });
+  onOpenModal = (imageUrl) => {
+    this.setState({ largeImageURL: imageUrl });
     this.toggleModal();
   };
 

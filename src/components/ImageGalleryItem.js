@@ -9,7 +9,7 @@ const ImageGalleryItem = ({ webformatURL, largeImageURL, onOpenModal }) => {
         src={webformatURL}
         alt=""
         data-source={largeImageURL}
-        onClick={onOpenModal}
+        onClick={() => onOpenModal(largeImageURL)}
       />
     </li>
   );
